@@ -2,11 +2,9 @@
 <template>
   <div>
     <section class="order">
-      <header class="header">
-        <a class="header_title">
-          <span class="header_title_text">订单列表</span>
-        </a>
-      </header>
+      <!-- 头部组件 -->
+      <headerTop title="订单"></headerTop>
+      
       <section class="order_no_login">
         <img src />
         <h3>登录后查看外卖订单</h3>
@@ -17,7 +15,15 @@
 </template>
 
 <script>
-export default {};
+// 引入HeaderTop
+import HeaderTop from "@/components/HeaderTop/HeaderTop.vue";
+
+export default {
+  // 注册到components
+  components: {
+    HeaderTop,
+  },
+};
 </script>
 
 <style scoped lang='stylus'>

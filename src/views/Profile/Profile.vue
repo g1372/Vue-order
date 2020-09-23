@@ -2,11 +2,8 @@
 <template>
   <div>
     <section class="profile">
-      <header class="header">
-        <a class="header_title">
-          <span class="header_title_text">我的</span>
-        </a>
-      </header>
+      <headerTop title="个人中心"></headerTop>
+
       <section class="profile-number">
         <a href="javascript:" class="profile-link">
           <div class="profile_image">
@@ -105,7 +102,14 @@
 </template>
 
 <script>
-export default {};
+import HeaderTop from "@/components/HeaderTop/HeaderTop.vue";
+
+export default {
+  // 注册到components
+  components: {
+    HeaderTop,
+  },
+};
 </script>
 
 <style scoped lang='stylus'>
