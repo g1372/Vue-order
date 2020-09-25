@@ -2,11 +2,10 @@
   <div>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2085780_ncj58pfpkrc.css" />
 
-    <!-- 上面的内容 -->
-    <router-view></router-view>
+
     
     <!-- 底部导航 -->
-    <footer class="footer_guide border-1px">
+    <footer class="footer_guide border-1px" >
       <router-link to="/msite" class="guide_item" :class="{on:$route.path=='/msite'}">
         <span class="item_icon">
           <i class="iconfont icon-iconfont27"></i>
@@ -41,6 +40,7 @@ export default {};
 
 <style lang="stylus">
 @import '../../assets/stylus/mixins.styl';
+
 
 .footer_guide { // footer
   top-border-1px(#e4e4e4);

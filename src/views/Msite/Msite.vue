@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="on">
+  <div>
     <section class="msite">
       <!-- 头部组件 -->
       <!-- title传回一个值 -->
@@ -14,120 +14,123 @@
         <!-- 右边的部件 -->
         <template v-slot:right>
           <span class="header_login">
-            <span class="header_login_text">登录|注册</span>
+            <!-- <span class="header_login_text">登录|注册</span> -->
+      <router-link to="/login" class="header_login_text">
+      登录|注册
+      </router-link>
+
           </span>
         </template>
       </headerTop>
 
       <!--首页导航-->
       <nav class="msite_nav">
-        <div class="swiper-container">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src />
-                </div>
-                <span>甜品饮品</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src />
-                </div>
-                <span>商超便利</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src />
-                </div>
-                <span>美食</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src />
-                </div>
-                <span>简餐</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src />
-                </div>
-                <span>新店特惠</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src />
-                </div>
-                <span>准时达</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src />
-                </div>
-                <span>预订早餐</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src />
-                </div>
-                <span>土豪推荐</span>
-              </a>
-            </div>
-            <div class="swiper-slide">
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src />
-                </div>
-                <span>甜品饮品</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src />
-                </div>
-                <span>商超便利</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src />
-                </div>
-                <span>美食</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src />
-                </div>
-                <span>简餐</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src />
-                </div>
-                <span>新店特惠</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src />
-                </div>
-                <span>准时达</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src />
-                </div>
-                <span>预订早餐</span>
-              </a>
-              <a href="javascript:" class="link_to_food">
-                <div class="food_container">
-                  <img src />
-                </div>
-                <span>土豪推荐</span>
-              </a>
-            </div>
-          </div>
-          <!-- Add Pagination -->
-          <div class="swiper-pagination"></div>
-        </div>
+        <swiper ref="mySwiper" :options="swiperOptions">
+          <swiper-slide>
+            <a href="javascript:" class="link_to_food">
+              <div class="food_container">
+                <img src="../../assets/images/nav/1.jpg" />
+              </div>
+              <span>甜品饮品</span>
+            </a>
+            <a href="javascript:" class="link_to_food">
+              <div class="food_container">
+                <img src="../../assets/images/nav/2.jpg" />
+              </div>
+              <span>商超便利</span>
+            </a>
+            <a href="javascript:" class="link_to_food">
+              <div class="food_container">
+                <img src="../../assets/images/nav/3.jpg" />
+              </div>
+              <span>美食</span>
+            </a>
+            <a href="javascript:" class="link_to_food">
+              <div class="food_container">
+                <img src="../../assets/images/nav/4.jpg" />
+              </div>
+              <span>简餐</span>
+            </a>
+            <a href="javascript:" class="link_to_food">
+              <div class="food_container">
+                <img src="../../assets/images/nav/5.jpg" />
+              </div>
+              <span>新店特惠</span>
+            </a>
+            <a href="javascript:" class="link_to_food">
+              <div class="food_container">
+                <img src="../../assets/images/nav/6.jpg" />
+              </div>
+              <span>准时达</span>
+            </a>
+            <a href="javascript:" class="link_to_food">
+              <div class="food_container">
+                <img src="../../assets/images/nav/7.jpg" />
+              </div>
+              <span>预订早餐</span>
+            </a>
+            <a href="javascript:" class="link_to_food">
+              <div class="food_container">
+                <img src="../../assets/images/nav/8.jpg" />
+              </div>
+              <span>土豪推荐</span>
+            </a>
+          </swiper-slide>
+          <swiper-slide>
+            <a href="javascript:" class="link_to_food">
+              <div class="food_container">
+                <img src="../../assets/images/nav/9.jpg" />
+              </div>
+              <span>甜品饮品</span>
+            </a>
+            <a href="javascript:" class="link_to_food">
+              <div class="food_container">
+                <img src="../../assets/images/nav/10.jpg" />
+              </div>
+              <span>商超便利</span>
+            </a>
+            <a href="javascript:" class="link_to_food">
+              <div class="food_container">
+                <img src="../../assets/images/nav/11.jpg" />
+              </div>
+              <span>美食</span>
+            </a>
+            <a href="javascript:" class="link_to_food">
+              <div class="food_container">
+                <img src="../../assets/images/nav/12.jpg" />
+              </div>
+              <span>简餐</span>
+            </a>
+            <a href="javascript:" class="link_to_food">
+              <div class="food_container">
+                <img src="../../assets/images/nav/13.jpg" />
+              </div>
+              <span>新店特惠</span>
+            </a>
+            <a href="javascript:" class="link_to_food">
+              <div class="food_container">
+                <img src="../../assets/images/nav/14.jpg" />
+              </div>
+              <span>准时达</span>
+            </a>
+            <a href="javascript:" class="link_to_food">
+              <div class="food_container">
+                <img src="../../assets/images/nav/7.jpg" />
+              </div>
+              <span>预订早餐</span>
+            </a>
+            <a href="javascript:" class="link_to_food">
+              <div class="food_container">
+                <img src="../../assets/images/nav/8.jpg" />
+              </div>
+              <span>土豪推荐</span>
+            </a>
+          </swiper-slide>
+
+          <div class="swiper-pagination" slot="pagination"></div>
+        </swiper>
       </nav>
+
       <!--首页附近商家-->
       <div class="msite_shop_list">
         <div class="shop_header">
@@ -139,7 +142,7 @@
             <li class="shop_li border-1px">
               <a>
                 <div class="shop_left">
-                  <img class="shop_img" src />
+                  <img class="shop_img" src="../../assets/images/shop/1.jpg" />
                 </div>
                 <div class="shop_right">
                   <section class="shop_detail_header">
@@ -179,7 +182,7 @@
             <li class="shop_li border-1px">
               <a>
                 <div class="shop_left">
-                  <img class="shop_img" src />
+                  <img class="shop_img" src="../../assets/images/shop/2.jpg" />
                 </div>
                 <div class="shop_right">
                   <section class="shop_detail_header">
@@ -219,7 +222,7 @@
             <li class="shop_li border-1px">
               <a>
                 <div class="shop_left">
-                  <img class="shop_img" src />
+                  <img class="shop_img" src="../../assets/images/shop/3.jpg" />
                 </div>
                 <div class="shop_right">
                   <section class="shop_detail_header">
@@ -259,7 +262,7 @@
             <li class="shop_li border-1px">
               <a>
                 <div class="shop_left">
-                  <img class="shop_img" src />
+                  <img class="shop_img" src="../../assets/images/shop/4.jpg" />
                 </div>
                 <div class="shop_right">
                   <section class="shop_detail_header">
@@ -304,21 +307,97 @@
 </template>
 
 <script>
+// 导入组件
 import HeaderTop from "@/components/HeaderTop/HeaderTop.vue";
+// 导入轮播插件Swiper
+import { Swiper, SwiperSlide, directive } from "vue-awesome-swiper";
+import "swiper/swiper-bundle.css";
 
 export default {
+  data() {
+    return {
+      swiperOptions: {
+        pagination: {
+          el: ".swiper-pagination",
+        },
+        // Some Swiper option/callback...
+        loop: true,
+        autoplay: true,
+      },
+    };
+  },
   // 注册到components
   components: {
     HeaderTop,
+    // 注册轮播
+    Swiper,
+    SwiperSlide,
+  },
+  directives: {
+    swiper: directive,
   },
 };
 </script>
 
-<style scoped lang="stylus">
+<style lang='stylus' scoped>
+@import '../../assets/stylus/mixins.styl';
+@import '../../assets/stylus/reset.styl';
+
 &.msite { // 首页
   width: 100%;
 
-  
+  .msite_header {
+    background-color: $dColor;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 45px;
+
+    .header_search {
+      position: absolute;
+      left: 15px;
+      top: 55%;
+      transform: translateY(-50%);
+      width: 10%;
+      height: 50%;
+
+      .icon-sousuo {
+        font-size: 18px;
+        color: #fff;
+      }
+    }
+
+    .header_title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50%;
+      color: #fff;
+      text-align: center;
+
+      .header_title_text {
+        font-size: 18px;
+        color: #fff;
+        display: block;
+      }
+    }
+
+    .header_login {
+      font-size: 14px;
+      color: #fff;
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      .header_login_text {
+        color: #fff;
+      }
+    }
+  }
 
   .msite_nav {
     bottom-border-1px(#e4e4e4);
@@ -499,18 +578,6 @@ export default {
                         &:last-child {
                           margin-right: 0;
                         }
-
-                        &.on {
-                          bg-image('../images/stars/star48_on');
-                        }
-
-                        &.half {
-                          bg-image('../images/stars/star48_half');
-                        }
-
-                        &.off {
-                          bg-image('../images/stars/star48_off');
-                        }
                       }
                     }
 
@@ -524,18 +591,6 @@ export default {
                         &:last-child {
                           margin-right: 0;
                         }
-
-                        &.on {
-                          bg-image('../images/stars/star36_on');
-                        }
-
-                        &.half {
-                          bg-image('../images/stars/star36_half');
-                        }
-
-                        &.off {
-                          bg-image('../images/stars/star36_off');
-                        }
                       }
                     }
 
@@ -548,18 +603,6 @@ export default {
 
                         &:last-child {
                           margin-right: 0;
-                        }
-
-                        &.on {
-                          bg-image('../images/stars/star24_on');
-                        }
-
-                        &.half {
-                          bg-image('../images/stars/star24_half');
-                        }
-
-                        &.off {
-                          bg-image('../images/stars/star24_off');
                         }
                       }
                     }
@@ -629,5 +672,10 @@ export default {
       }
     }
   }
+}
+
+.swiper-container {
+  --swiper-theme-color: #ff6600;
+  --swiper-pagination-color: #00ff33; /* 两种都可以 */
 }
 </style>

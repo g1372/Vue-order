@@ -4,9 +4,8 @@
     <section class="order">
       <!-- 头部组件 -->
       <headerTop title="订单"></headerTop>
-      
       <section class="order_no_login">
-        <img src />
+        <img src="../../assets/images/order/person.png" />
         <h3>登录后查看外卖订单</h3>
         <button>立即登陆</button>
       </section>
@@ -27,7 +26,7 @@ export default {
 </script>
 
 <style scoped lang='stylus'>
-@import '../../assets/stylus/mixins.styl'
+@import '../../assets/stylus/mixins.styl';
 
 .order { // 订单
   width: 100%;

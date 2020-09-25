@@ -2,12 +2,14 @@
 <template>
   <div>
     <section class="profile">
+      <link rel="stylesheet" href="//at.alicdn.com/t/font_2085780_echy0v0z78c.css" />
+
       <headerTop title="个人中心"></headerTop>
 
       <section class="profile-number">
-        <a href="javascript:" class="profile-link">
+        <router-link to="/Login" class="profile-link">
           <div class="profile_image">
-            <i class="iconfont icon-person"></i>
+            <i class="iconfont icon-zhaopianqiang"></i>
           </div>
           <div class="user-info">
             <p class="user-info-top">登录/注册</p>
@@ -21,7 +23,8 @@
           <span class="arrow">
             <i class="iconfont icon-jiantou1"></i>
           </span>
-        </a>
+        </router-link>
+        <!-- <a href="javascript:" class="profile-link"></a> -->
       </section>
       <section class="profile_info_data border-1px">
         <ul class="info_data_list">

@@ -2,8 +2,7 @@
 <template>
   <div>
     <section class="search">
-           <headerTop title="搜索"></headerTop>
-
+      <headerTop title="搜索"></headerTop>
 
       <form class="search_form" action="#">
         <input type="search" name="search" placeholder="请输入商家或美食名称" class="search_input" />
