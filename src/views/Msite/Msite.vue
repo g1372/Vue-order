@@ -4,7 +4,7 @@
     <section class="msite">
       <!-- 头部组件 -->
       <!-- title传回一个值 -->
-      <headerTop title="首页">
+      <headerTop :title="address.name">
         <!-- 左边的部件 -->
         <template v-slot:left>
           <span class="header_search">
@@ -15,10 +15,9 @@
         <template v-slot:right>
           <span class="header_login">
             <!-- <span class="header_login_text">登录|注册</span> -->
-      <router-link to="/login" class="header_login_text">
-      登录|注册
-      </router-link>
-
+            <router-link to="/login" class="header_login_text">
+              登录|注册
+            </router-link>
           </span>
         </template>
       </headerTop>
@@ -166,7 +165,9 @@
                       <div class="order_section">月售106单</div>
                     </section>
                     <section class="shop_rating_order_right">
-                      <span class="delivery_style delivery_right">美团专送</span>
+                      <span class="delivery_style delivery_right"
+                        >美团专送</span
+                      >
                     </section>
                   </section>
                   <section class="shop_distance">
@@ -206,7 +207,9 @@
                       <div class="order_section">月售106单</div>
                     </section>
                     <section class="shop_rating_order_right">
-                      <span class="delivery_style delivery_right">美团专送</span>
+                      <span class="delivery_style delivery_right"
+                        >美团专送</span
+                      >
                     </section>
                   </section>
                   <section class="shop_distance">
@@ -246,7 +249,9 @@
                       <div class="order_section">月售106单</div>
                     </section>
                     <section class="shop_rating_order_right">
-                      <span class="delivery_style delivery_right">美团专送</span>
+                      <span class="delivery_style delivery_right"
+                        >美团专送</span
+                      >
                     </section>
                   </section>
                   <section class="shop_distance">
@@ -286,7 +291,9 @@
                       <div class="order_section">月售106单</div>
                     </section>
                     <section class="shop_rating_order_right">
-                      <span class="delivery_style delivery_right">美团专送</span>
+                      <span class="delivery_style delivery_right"
+                        >美团专送</span
+                      >
                     </section>
                   </section>
                   <section class="shop_distance">
@@ -312,7 +319,8 @@ import HeaderTop from "@/components/HeaderTop/HeaderTop.vue";
 // 导入轮播插件Swiper
 import { Swiper, SwiperSlide, directive } from "vue-awesome-swiper";
 import "swiper/swiper-bundle.css";
-
+//1.导入mapState 辅助函数
+import { mapState } from "vuex";
 export default {
   data() {
     return {
@@ -335,6 +343,10 @@ export default {
   },
   directives: {
     swiper: directive,
+  },
+  computed: {
+    // 使用对象展开运算符将此对象混入到外部对象中
+    ...mapState(["address"]), //映射 this.address 为 store.state.address
   },
 };
 </script>
