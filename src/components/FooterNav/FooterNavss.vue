@@ -2,8 +2,6 @@
   <div>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2085780_ncj58pfpkrc.css" />
 
-
-    
     <!-- 底部导航 -->
     <footer class="footer_guide border-1px" >
       <router-link to="/msite" class="guide_item" :class="{on:$route.path=='/msite'}">

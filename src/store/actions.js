@@ -4,25 +4,38 @@
  */
 
 // 注意要引入api接口函数
-import { reqAddress } from '../api'
-import {
-  RECEIVE_ADDRESS
-} from './mutation-types'
+import { reqAddress } from "../api";
+import { RECEIVE_ADDRESS } from "./mutation-types";
+import { reqShops } from "../api";
+import { RECEIVE_SHOPS } from "./mutation-types";
 export default {
   // 1.异步获取地址
   async getAddress({ commit, state }) {
     // 从state状态中获取到经纬度用来设置reqAddress的参数（看接口文档）
-    const geohash = state.latitude + ',' + state.longitude
+    const geohash = state.latitude + "," + state.longitude;
     // 1. 发送异步ajax请求
-    const result = await reqAddress(geohash)
+    const result = await reqAddress(geohash);
     // 2. 提交一个mutation
     if (result.code === 0) {
-      const address = result.data
+      const address = result.data;
       commit(RECEIVE_ADDRESS, {
-        address
-      })
+        address,
+      });
+    }
+  },
+  async getShops({ commit, state }) {
+    const geohash = state.latitude + "," + state.longitude;
+
+    // 1. 发送异步ajax请求
+    const result = await reqShops(geohash);
+    // 2. 提交一个mutation
+    if (result.code === 0) {
+      const shoplist = result.data;
+      commit(RECEIVE_SHOPS, {
+        shoplist,
+      });
     }
   },
   // 2.异步获取食品分类列表
   // 3.异步获取商家列表
-}
+};
