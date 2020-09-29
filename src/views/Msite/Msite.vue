@@ -3,6 +3,7 @@
   <div>
     <section class="msite">
       <!-- 头部组件 -->
+     
       <!-- title传回一个值 -->
       <headerTop :title="address.name">
         <!-- 左边的部件 -->
@@ -172,6 +173,8 @@ export default {
   computed: {
     // 使用对象展开运算符将此对象混入到外部对象中
     ...mapState(["address"]), //映射 this.address 为 store.state.address
+    ...mapState(["foodlist"]),
+
   },
 };
 </script>

@@ -4,6 +4,6 @@
 // 1.接收地址信息
 export const RECEIVE_ADDRESS = 'receive_address'
 // 2.接收分类数组
-export const RECEIVE_SHOPS = 'receive_shops'
+export const RECEIVE_CATEGORYS = 'receive_categorys'
 // 3.接收商家数组
-//···
+export const RECEIVE_SHOPS = 'receive_shops'

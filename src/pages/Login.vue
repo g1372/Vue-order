@@ -1,7 +1,10 @@
 <!--  -->
 <template>
   <div>
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_2085780_yswtjjqcr2.css" />
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_2085780_yswtjjqcr2.css"
+    />
 
     <div class="off">
       <section class="loginContainer">
@@ -9,16 +12,40 @@
           <div class="login_header">
             <h2 class="login_logo">美团外卖</h2>
             <div class="login_header_title">
-              <a href="javascript:;" class="on">短信登录</a>
-              <a href="javascript:;">密码登录</a>
+              <a
+                href="javascript:;"
+                :class="loginWay ? 'on' : ''"
+                @click="loginWay = true"
+                >短信登录</a
+              >
+              <a
+                href="javascript:;"
+                :class="loginWay ? '' : 'on'"
+                @click="loginWay = false"
+                >密码登录</a
+              >
             </div>
           </div>
           <div class="login_content">
             <form>
-              <div class="on">
+              <div :class="loginWay ? 'on' : ''">
                 <section class="login_message">
-                  <input type="tel" maxlength="11" placeholder="手机号" />
-                  <button disabled="disabled" class="get_verification">获取验证码</button>
+                  <input
+                    type="tel"
+                    maxlength="11"
+                    placeholder="手机号"
+                    v-model="phone"
+                  />
+                  <button
+                    :disabled="!isphone&&computeTime==0||computeTime>0"
+                    class="get_verification"
+                    :class="isphone && computeTime == 0 ? 'dd' : ''"
+                    @click="getCode"
+                  >
+                    {{
+                      computeTime == 0 ? "获取验证码" : `请等待${computeTime}S`
+                    }}
+                  </button>
                 </section>
                 <section class="login_verification">
                   <input type="tel" maxlength="8" placeholder="验证码" />
@@ -28,10 +55,14 @@
                   <a href="javascript:;">《用户服务协议》</a>
                 </section>
               </div>
-              <div>
+              <div :class="loginWay ? '' : 'on'">
                 <section>
                   <section class="login_message">
-                    <input type="tel" maxlength="11" placeholder="手机/邮箱/用户名" />
+                    <input
+                      type="tel"
+                      maxlength="11"
+                      placeholder="手机/邮箱/用户名"
+                    />
                   </section>
                   <section class="login_verification">
                     <input type="tel" maxlength="8" placeholder="密码" />
@@ -42,7 +73,11 @@
                   </section>
                   <section class="login_message">
                     <input type="text" maxlength="11" placeholder="验证码" />
-                    <img class="get_verification" src="./images/captcha.svg" alt="captcha" />
+                    <img
+                      class="get_verification"
+                      src="./images/captcha.svg"
+                      alt="captcha"
+                    />
                   </section>
                 </section>
               </div>
@@ -63,7 +98,32 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      loginWay: true, //登录方式
+      phone: "", //电话号
+      computeTime: 0, //倒计时
+    };
+  },
+  computed: {
+    isphone() {
+      return /^1[3456789]\d{9}/gi.test(this.phone);
+    },
+  },
+  methods: {
+    getCode() {
+      console.log(1);
+      this.computeTime = 30;
+      var cTime = setInterval(() => {
+        this.computeTime--;
+        if (this.computeTime == 0) {
+          clearInterval(cTime);
+        }
+      }, 1000);
+    },
+  },
+};
 </script>
 
 <style scoped lang='stylus'>
@@ -151,6 +211,10 @@ export default {};
               color: #ccc;
               font-size: 14px;
               background: transparent;
+            }
+
+            .dd {
+              color: #f00;
             }
           }
 

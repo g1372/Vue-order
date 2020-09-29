@@ -8,7 +8,9 @@ import actions from './actions'
 
 
 Vue.use(Vuex);
-
+// state相当于真实存放的位置货物
+// mutitions相当取货的运输员
+// actions相当于安排取货的管理
 export default new Vuex.Store({
   state,
   mutations,
