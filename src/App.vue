@@ -20,7 +20,8 @@ export default {
   async mounted() {
     this.$store.dispatch("getAddress");
     this.$store.dispatch("getShops");
-
+    // 存入商品分类
+    this.$store.dispatch("getCategorys");
   },
 };
 </script>

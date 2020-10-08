@@ -5,7 +5,6 @@
       rel="stylesheet"
       href="//at.alicdn.com/t/font_2085780_yswtjjqcr2.css"
     />
-
     <div class="off">
       <section class="loginContainer">
         <div class="loginInner">
@@ -37,7 +36,9 @@
                     v-model="phone"
                   />
                   <button
-                    :disabled="!isphone&&computeTime==0||computeTime>0"
+                    :disabled="
+                      (!isphone && computeTime == 0) || computeTime > 0
+                    "
                     class="get_verification"
                     :class="isphone && computeTime == 0 ? 'dd' : ''"
                     @click="getCode"
@@ -65,10 +66,23 @@
                     />
                   </section>
                   <section class="login_verification">
-                    <input type="tel" maxlength="8" placeholder="密码" />
-                    <div class="switch_button off">
-                      <div class="switch_circle"></div>
-                      <span class="switch_text">...</span>
+                    <input
+                      :type="ispwd ? 'text' : 'password'"
+                      maxlength="8"
+                      placeholder="密码"
+                    />
+                    <div
+                      class="switch_button"
+                      @click="ispwd = !ispwd"
+                      :class="ispwd ? 'on' : 'off'"
+                    >
+                      <div
+                        class="switch_circle"
+                        :class="ispwd ? 'right' : ''"
+                      ></div>
+                      <span class="switch_text">{{
+                        ispwd ? "abc" : "..."
+                      }}</span>
                     </div>
                   </section>
                   <section class="login_message">
@@ -81,7 +95,7 @@
                   </section>
                 </section>
               </div>
-              <button class="login_submit">登录</button>
+              <button class="login_submit" @click="ShowAlert">登录</button>
             </form>
             <a href="javascript:;" class="about_us">关于我们</a>
           </div>
@@ -94,17 +108,29 @@
         </div>
       </section>
     </div>
+    <AlertTip
+      v-if="isShowAlert"
+      @closeAlert="closeAlert"
+      :AlertText="AlertText"
+    ></AlertTip>
   </div>
 </template>
 
 <script>
+import AlertTip from "../components/AlertTip/AlertTip";
 export default {
   data() {
     return {
       loginWay: true, //登录方式
       phone: "", //电话号
       computeTime: 0, //倒计时
+      ispwd: false, //切换密码是否显示
+      isShowAlert: false,
+      AlertText: "弹出成功",
     };
+  },
+  components: {
+    AlertTip,
   },
   computed: {
     isphone() {
@@ -113,7 +139,7 @@ export default {
   },
   methods: {
     getCode() {
-      console.log(1);
+      // console.log(1);
       this.computeTime = 30;
       var cTime = setInterval(() => {
         this.computeTime--;
@@ -121,6 +147,12 @@ export default {
           clearInterval(cTime);
         }
       }, 1000);
+    },
+    ShowAlert() {
+      this.isShowAlert = true;
+    },
+    closeAlert() {
+      this.isShowAlert = false;
     },
   },
 };
@@ -265,6 +297,10 @@ export default {
                 background: #fff;
                 box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
                 transition: transform 0.3s;
+              }
+
+              .right {
+                transform: translateX(27px);
               }
             }
           }

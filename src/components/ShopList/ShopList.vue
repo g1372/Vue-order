@@ -5,7 +5,6 @@
       <i class="iconfont icon-xuanxiang"></i>
       <span class="shop_header_title">附近商家</span>
     </div>
-    {{categorys}}
     <div class="shop_container">
       <ul class="shop_list">
         <li
@@ -59,7 +58,6 @@ import starts from "../starts/starts.vue";
 export default {
   computed: {
     ...mapState(["shoplist"]),
-    ...mapState(["categorys"]),
   },
   components: {
     starts,
