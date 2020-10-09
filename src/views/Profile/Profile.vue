@@ -2,7 +2,10 @@
 <template>
   <div>
     <section class="profile">
-      <link rel="stylesheet" href="//at.alicdn.com/t/font_2085780_echy0v0z78c.css" />
+      <link
+        rel="stylesheet"
+        href="//at.alicdn.com/t/font_2085780_echy0v0z78c.css"
+      />
 
       <headerTop title="个人中心"></headerTop>
 
@@ -12,7 +15,9 @@
             <i class="iconfont icon-zhaopianqiang"></i>
           </div>
           <div class="user-info">
-            <p class="user-info-top">登录/注册</p>
+            <p class="user-info-top">
+              {{ myinfo ? myName.data.name : "登录/注册" }}
+            </p>
             <p>
               <span class="user-icon">
                 <i class="iconfont icon-shouji icon-mobile"></i>
@@ -29,21 +34,15 @@
       <section class="profile_info_data border-1px">
         <ul class="info_data_list">
           <a href="javascript:" class="info_data_link">
-            <span class="info_data_top">
-              <span>0.00</span>元
-            </span>
-            <span class="info_data_bottom">我的余额</span>
+            <span class="info_data_top"> <span>0.00</span>元 </span>
+            <span class="info_data_bottom" @click="dd">我的余额</span>
           </a>
           <a href="javascript:" class="info_data_link">
-            <span class="info_data_top">
-              <span>0</span>个
-            </span>
+            <span class="info_data_top"> <span>0</span>个 </span>
             <span class="info_data_bottom">我的优惠</span>
           </a>
           <a href="javascript:" class="info_data_link">
-            <span class="info_data_top">
-              <span>0</span>分
-            </span>
+            <span class="info_data_top"> <span>0</span>分 </span>
             <span class="info_data_bottom">我的积分</span>
           </a>
         </ul>
@@ -106,11 +105,31 @@
 
 <script>
 import HeaderTop from "@/components/HeaderTop/HeaderTop.vue";
-
+import { mapState } from "vuex";
 export default {
+  data() {
+    return {
+      myinfo: false,
+      myName: "",
+    };
+  },
   // 注册到components
   components: {
     HeaderTop,
+  },
+  computed: {
+    ...mapState(["userInfo"]),
+  },
+  mounted() {
+    if (this.userInfo.code == 0) {
+      this.myinfo = true;
+      this.myName = this.userInfo;
+    }
+  },
+  methods: {
+    dd() {
+      console.log(this.userInfo.name);
+    },
   },
 };
 </script>

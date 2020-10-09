@@ -9,6 +9,7 @@ import {
   RECEIVE_ADDRESS,
   RECEIVE_SHOPS,
   RECEIVE_CATEGORYS,
+  RECEIVE_USER_INFO,
 } from "./mutation-types";
 
 export default {
@@ -49,5 +50,13 @@ export default {
         categorys,
       });
     }
+  },
+  async setDemoValue({ commit }, demoValue) {
+    // console.log(demoValue);
+    
+      commit(RECEIVE_USER_INFO, {
+        userInfo: demoValue,
+      });
+    
   },
 };

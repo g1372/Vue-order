@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="login_content">
-            <form>
+            <form @submit.prevent="login">
               <div :class="loginWay ? 'on' : ''">
                 <section class="login_message">
                   <input
@@ -49,7 +49,12 @@
                   </button>
                 </section>
                 <section class="login_verification">
-                  <input type="tel" maxlength="8" placeholder="验证码" />
+                  <input
+                    type="tel"
+                    maxlength="8"
+                    placeholder="验证码"
+                    v-model="code"
+                  />
                 </section>
                 <section class="login_hint">
                   温馨提示：未注册美团外卖帐号的手机号，登录时将自动注册，且代表已同意
@@ -63,6 +68,7 @@
                       type="tel"
                       maxlength="11"
                       placeholder="手机/邮箱/用户名"
+                      v-model="name"
                     />
                   </section>
                   <section class="login_verification">
@@ -70,6 +76,7 @@
                       :type="ispwd ? 'text' : 'password'"
                       maxlength="8"
                       placeholder="密码"
+                      v-model="pwd"
                     />
                     <div
                       class="switch_button"
@@ -86,16 +93,23 @@
                     </div>
                   </section>
                   <section class="login_message">
-                    <input type="text" maxlength="11" placeholder="验证码" />
+                    <input
+                      type="text"
+                      maxlength="11"
+                      placeholder="验证码"
+                      v-model="captcha"
+                    />
                     <img
                       class="get_verification"
-                      src="./images/captcha.svg"
+                      src="http://localhost:4000/captcha"
                       alt="captcha"
+                      @click="getCaptcha"
+                      ref="captcha"
                     />
                   </section>
                 </section>
               </div>
-              <button class="login_submit" @click="ShowAlert">登录</button>
+              <button class="login_submit" @click="login">登录</button>
             </form>
             <a href="javascript:;" class="about_us">关于我们</a>
           </div>
@@ -118,6 +132,7 @@
 
 <script>
 import AlertTip from "../components/AlertTip/AlertTip";
+import { reqSendCode, reqPwdLogin } from "../api";
 export default {
   data() {
     return {
@@ -125,8 +140,12 @@ export default {
       phone: "", //电话号
       computeTime: 0, //倒计时
       ispwd: false, //切换密码是否显示
-      isShowAlert: false,
-      AlertText: "弹出成功",
+      isShowAlert: false, //是否显示警告框
+      AlertText: "", //提示语句
+      name: "", // 用户名
+      code: "", // 短信验证码
+      captcha: "", // 图形验证码
+      pwd: "", //密码
     };
   },
   components: {
@@ -138,28 +157,81 @@ export default {
     },
   },
   methods: {
-    getCode() {
-      // console.log(1);
+    async getCode() {
+      //发送手机验证码
+      let result = await reqSendCode(this.cell);
+      if (result.code == 1) {
+        this.ShowAlert(result.msg);
+        return;
+      }
+      //验证码触发过等待时间
       this.computeTime = 30;
-      var cTime = setInterval(() => {
+      //定时器  每一秒减一  当时间为 0时 定时器结束
+      let timer = setInterval(() => {
         this.computeTime--;
         if (this.computeTime == 0) {
-          clearInterval(cTime);
+          clearInterval(timer);
         }
       }, 1000);
     },
-    ShowAlert() {
+    ShowAlert(newAlerttitle) {
+      //弹出显示框
       this.isShowAlert = true;
+      this.AlertText = newAlerttitle;
     },
     closeAlert() {
+      //取消显示框
       this.isShowAlert = false;
     },
+    getCaptcha() {
+      //更改图形验证码
+      // 每次指定的src要不一样
+      this.$refs.captcha.src =
+        "http://localhost:4000/captcha?time=" + Date.now();
+    },
+    async login() {
+      if (this.loginWay) {
+        //密码登录时
+        // 手机号错误时
+        if (!this.phone) {
+          this.ShowAlert("手机号码错误！！！");
+          return;
+          // 验证码错误时
+        } else if (!this.code) {
+          this.ShowAlert("手机验证码错误！！！");
+          return;
+        }
+        // 密码登录时判断
+      } else if (!this.name) {
+        this.ShowAlert("登录账号错误！！！");
+        return;
+      } else if (!this.pwd) {
+        this.ShowAlert("登录密码错误！！！");
+        return;
+      }
+      let result; // 保存登录成功后返回的数据
+      // 发送ajax请求密码登陆
+      result = await reqPwdLogin({
+        name: this.name,
+        pwd: this.pwd,
+        captcha: this.captcha,
+      });
+      if (result.code === 0) {
+        this.$router.replace("/profile");
+        this.$store.dispatch("setDemoValue", result);
+      } else {
+        this.ShowAlert(result.msg);
+      }
+    },
+  },
+  mounted() {
+    //生命周期  在页面初始时 给图片验证码 更改路径
+    this.imgSrc = `http://localhost:4000/captcha`;
   },
 };
 </script>
 
 <style scoped lang='stylus'>
-// $dColor = #0085ff;
 @import '../assets/stylus/mixins.styl';
 @import '../assets/stylus/reset.styl';
 

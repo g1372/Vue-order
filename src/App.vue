@@ -22,6 +22,9 @@ export default {
     this.$store.dispatch("getShops");
     // 存入商品分类
     this.$store.dispatch("getCategorys");
+    //存入账户密码
+    this.$store.dispatch("setDemoValue");
+
   },
 };
 </script>
