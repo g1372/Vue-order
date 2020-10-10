@@ -6,7 +6,7 @@
       <span class="shop_header_title">附近商家</span>
     </div>
     <div class="shop_container">
-      <ul class="shop_list">
+      <router-link to="/shop" class="shop_list">
         <li
           class="shop_li border-1px"
           v-for="(item, index) in shoplist"
@@ -27,7 +27,7 @@
               </section>
               <section class="shop_rating_order">
                 <section class="shop_rating_order_left">
-                  <starts :rating='item.rating'></starts>
+                  <starts :rating="item.rating"></starts>
                   <div class="rating_section">{{ item.rating }}</div>
                   <div class="order_section">{月售106单}</div>
                 </section>
@@ -47,7 +47,7 @@
             </div>
           </a>
         </li>
-      </ul>
+      </router-link>
     </div>
   </div>
 </template>
