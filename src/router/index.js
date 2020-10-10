@@ -13,7 +13,6 @@ const routes = [
     //重定向
     path: "/",
     redirect: "/msite",
-    
   },
   {
     path: "/msite",
@@ -45,5 +44,10 @@ const routes = [
 const router = new VueRouter({
   routes,
 });
+
+const VueRouterReplace = VueRouter.prototype.replace;
+VueRouter.prototype.replace = function replace(to) {
+  return VueRouterReplace.call(this, to).catch((err) => err);
+};
 
 export default router;
