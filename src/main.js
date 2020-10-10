@@ -10,3 +10,4 @@ new Vue({
   store, //2. 把 store 对象提供给 “store” 选项
   render: (h) => h(App),
 }).$mount("#app");
+
