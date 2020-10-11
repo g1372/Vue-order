@@ -8,6 +8,7 @@ import {
   reqAddress,
   reqShops,
   reqCategorys,
+  reqUserInfo,
   reqShopInfo,
   reqLogout,
   reqShopRatings,
@@ -74,6 +75,14 @@ export default {
     commit(RECEIVE_USER_INFO, {
       userInfo: demoValue,
     });
+  },
+  // 异步获取用户信息
+  async getUserInfo({ commit }) {
+    const result = await reqUserInfo();
+    if (result.code === 0) {
+      const userInfo = result.data;
+      commit(RECEIVE_USER_INFO, { userInfo });
+    }
   },
   // 异步登出
   async logout({ commit }) {
