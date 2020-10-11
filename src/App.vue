@@ -30,4 +30,5 @@ export default {
 </script>
 <style lang="stylus">
 @import url('./assets/stylus/reset.styl');
+
 </style>

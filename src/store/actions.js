@@ -9,9 +9,10 @@ import {
   reqShops,
   reqCategorys,
   reqShopInfo,
+  reqLogout,
   reqShopRatings,
   reqShopGoods,
-  reqSearchShop
+  reqSearchShop,
 } from "../api";
 import {
   RECEIVE_ADDRESS,
@@ -20,11 +21,12 @@ import {
   RECEIVE_USER_INFO,
   RECEIVE_INFO,
   RECEIVE_RATINGS,
+  RESET_USER_INFO,
   RECEIVE_GOODS,
   INCREMENT_FOOD_COUNT,
   DECREMENT_FOOD_COUNT,
   CLEAR_CART,
-  RECEIVE_SEARCH_SHOPS
+  RECEIVE_SEARCH_SHOPS,
 } from "./mutation-types";
 
 export default {
@@ -73,6 +75,14 @@ export default {
       userInfo: demoValue,
     });
   },
+  // 异步登出
+  async logout({ commit }) {
+    const result = await reqLogout();
+    if (result.code === 0) {
+      commit(RESET_USER_INFO);
+    }
+  },
+
   // 异步获取商家信息
   async getShopInfo({ commit }) {
     const result = await reqShopInfo();
@@ -83,32 +93,32 @@ export default {
   },
 
   // 异步获取商家评价列表
-  async getShopRatings({ commit },callback) {
+  async getShopRatings({ commit }, callback) {
     const result = await reqShopRatings();
     if (result.code === 0) {
       const ratings = result.data;
       commit(RECEIVE_RATINGS, { ratings });
-       // 数据更新了, 通知一下组件
-       callback && callback()
+      // 数据更新了, 通知一下组件
+      callback && callback();
     }
   },
 
-   // 异步获取商家商品列表
-   async getShopGoods({commit}, callback) {
-    const result = await reqShopGoods()
+  // 异步获取商家商品列表
+  async getShopGoods({ commit }, callback) {
+    const result = await reqShopGoods();
     if (result.code === 0) {
-      const goods = result.data
-      commit(RECEIVE_GOODS, {goods})
+      const goods = result.data;
+      commit(RECEIVE_GOODS, { goods });
       // 数据更新了, 通知一下组件
-      callback && callback()
+      callback && callback();
     }
   },
   // 同步更新food中的count值
-  updateFoodCount({commit}, {isAdd, food}) {
+  updateFoodCount({ commit }, { isAdd, food }) {
     if (isAdd) {
-      commit(INCREMENT_FOOD_COUNT, {food})
+      commit(INCREMENT_FOOD_COUNT, { food });
     } else {
-      commit(DECREMENT_FOOD_COUNT, {food})
+      commit(DECREMENT_FOOD_COUNT, { food });
     }
   },
   // 同步清空购物车
