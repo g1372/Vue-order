@@ -2,7 +2,7 @@
 <template>
   <header class="msite_header">
     <!-- 引入字体图标 --搜索-- -->
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_2085780_ncj58pfpkrc.css" />
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2085780_3uuseovco34.css" />
     <!-- 首页左侧的部件 -->
     <slot name="left"></slot>
     <a class="header_title">

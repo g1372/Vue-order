@@ -1,5 +1,7 @@
 <template>
   <div class="cartcontrol">
+     <link rel="stylesheet" href="//at.alicdn.com/t/font_2085780_vcaj0hk2q4b.css">
+
     <transition name="move">
       <div
         class="iconfont icon-remove_circle_outline"
@@ -50,7 +52,7 @@ export default {
     padding: 6px;
     line-height: 24px;
     font-size: 24px;
-    color: $green;
+    color: green;
 
     &.move-enter-active, &.move-leave-active {
       transition: all 0.3s;
@@ -78,7 +80,7 @@ export default {
     padding: 6px;
     line-height: 24px;
     font-size: 24px;
-    color: $green;
+    color: green;
   }
 }
 </style>

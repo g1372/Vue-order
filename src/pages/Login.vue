@@ -159,7 +159,7 @@ export default {
   methods: {
     async getCode() {
       //发送手机验证码
-      let result = await reqSendCode(this.cell);
+      let result = await reqSendCode(this.phone);
       if (result.code == 1) {
         this.ShowAlert(result.msg);
         return;
@@ -217,8 +217,11 @@ export default {
         captcha: this.captcha,
       });
       if (result.code === 0) {
+        const user = result.data;
+        // 将user保存到vuex的state
+        this.$store.dispatch("recordUser", user);
+        // 去个人中心界面
         this.$router.replace("/profile");
-        this.$store.dispatch("setDemoValue", result);
       } else {
         this.ShowAlert(result.msg);
       }

@@ -14,12 +14,19 @@
         </template>
         <!-- 右边的部件 -->
         <template v-slot:right>
-          <span class="header_login">
-            <!-- <span class="header_login_text">登录|注册</span> -->
-            <router-link to="/login" class="header_login_text">
+          <router-link
+            class="header_login"
+            slot="right"
+            :to="userInfo._id ? '/userinfo' : '/login'"
+          >
+            <span class="header_login_text" v-if="!userInfo._id">
               登录|注册
-            </router-link>
-          </span>
+            </span>
+            <!--如果已经登录则显示一个icon-->
+            <span class="header_login_text" v-else>
+              <i class="iconfont icon-denglu"></i>
+            </span>
+          </router-link>
         </template>
       </headerTop>
       <!--首页导航-->
@@ -33,9 +40,9 @@
               :key="index"
             >
               <div class="food_container">
-                <img  :src="baseImageUrl+item.image_url"/>
+                <img :src="baseImageUrl + item.image_url" />
               </div>
-              <span>{{item.title}}</span>
+              <span>{{ item.title }}</span>
             </a>
           </swiper-slide>
 
@@ -51,6 +58,7 @@
 
 <script>
 // 导入组件
+
 import HeaderTop from "../../components/HeaderTop/HeaderTop.vue";
 import ShopList from "../../components/ShopList/ShopList.vue";
 // 导入轮播插件Swiper
@@ -70,7 +78,7 @@ export default {
         loop: true,
         autoplay: true,
       },
-       baseImageUrl: 'https://fuss10.elemecdn.com'
+      baseImageUrl: "https://fuss10.elemecdn.com",
     };
   },
   // 注册到components
@@ -87,6 +95,7 @@ export default {
   computed: {
     // 使用对象展开运算符将此对象混入到外部对象中
     ...mapState(["address", "categorys"]), //映射 this.address 为 store.state.address
+    ...mapState(["userInfo"]),
     categorysArr() {
       let arr = [];
       // 遍历categorys16条
@@ -105,7 +114,6 @@ export default {
         // console.log(arr)
         minarr.push(element);
       });
-    
 
       return arr;
     },
@@ -137,7 +145,7 @@ export default {
       width: 10%;
       height: 50%;
 
-      .icon-sousuo {
+      .icon-iconfontsearch {
         font-size: 18px;
         color: #fff;
       }

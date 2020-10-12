@@ -14,7 +14,7 @@
         >
           <a>
             <div class="shop_left">
-              <img class="shop_img" src="./shop/1.jpg" />
+              <img class="shop_img" :src="baseImgUrl+index+'.jpg'" />
             </div>
             <div class="shop_right">
               <section class="shop_detail_header">
@@ -56,6 +56,11 @@
 import { mapState } from "vuex";
 import starts from "../starts/starts.vue";
 export default {
+   data () {
+      return {
+        baseImgUrl: 'https://argice.github.io/assets/'
+      }
+    },
   computed: {
     ...mapState(["shoplist"]),
   },

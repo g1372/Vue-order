@@ -1,12 +1,14 @@
 <template>
   <div>
+     <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css" />
+     <link rel="stylesheet" href="//at.alicdn.com/t/font_2085780_6zeolxbnm5g.css">
     <div class="shopcart">
       <div class="content">
         <div class="content-left" @click="toggleShow">
           <div class="logo-wrapper">
             <div class="logo" :class="{ highlight: totalCount }">
               <i
-                class="iconfont icon-shopping_cart"
+                class="iconfont icon-denglu"
                 :class="{ highlight: totalCount }"
               ></i>
             </div>
@@ -175,10 +177,10 @@ export default {
           background: #2b343c;
 
           &.highlight {
-            background: $green;
+            background: green;
           }
 
-          .icon-shopping_cart {
+          .icon-denglu {
             line-height: 44px;
             font-size: 24px;
             color: #80858a;
@@ -267,7 +269,7 @@ export default {
         width: 16px;
         height: 16px;
         border-radius: 50%;
-        background: $green;
+        background: green;
         transition: all 0.4s linear;
       }
     }

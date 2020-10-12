@@ -11,7 +11,7 @@
 <script>
 // 组建引用
 import FooterNav from "@/components/FooterNav/FooterNavss.vue";
-
+import {mapActions} from "vuex"
 export default {
   // 注册到components
   components: {
@@ -22,13 +22,14 @@ export default {
     this.$store.dispatch("getShops");
     // 存入商品分类
     this.$store.dispatch("getCategorys");
-    //存入账户密码
-    this.$store.dispatch("setDemoValue");
-
+  
+    this.getUserInfo();
   },
+  methods: {
+    ...mapActions(['getUserInfo'])
+  }
 };
 </script>
 <style lang="stylus">
 @import url('./assets/stylus/reset.styl');
-
 </style>

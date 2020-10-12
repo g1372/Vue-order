@@ -1,28 +1,33 @@
 <!--  -->
 <template>
   <div>
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_2085780_p0g6hapxbh.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css" />
     <section class="profile">
-      <link
-        rel="stylesheet"
-        href="//at.alicdn.com/t/font_2085780_echy0v0z78c.css"
-      />
-
       <headerTop title="个人中心"></headerTop>
 
       <section class="profile-number">
-        <router-link to="/Login" class="profile-link">
+        <router-link
+          :to="userInfo._id ? '/profile' : '/login'"
+          class="profile-link"
+        >
           <div class="profile_image">
-            <i class="iconfont icon-zhaopianqiang"></i>
+            <i class="iconfont icon-person"></i>
           </div>
           <div class="user-info">
-            <p class="user-info-top">
-              {{ myinfo ? myName.data.name : "登录/注册" }}
+            <p class="user-info-top" v-if="!userInfo.phone">
+              {{ userInfo.name || "登录/注册" }}
             </p>
             <p>
               <span class="user-icon">
                 <i class="iconfont icon-shouji icon-mobile"></i>
               </span>
-              <span class="icon-mobile-number">暂无绑定手机号</span>
+              <span class="icon-mobile-number">{{
+                userInfo.phone || "暂无绑定手机号"
+              }}</span>
             </p>
           </div>
           <span class="arrow">
@@ -35,7 +40,7 @@
         <ul class="info_data_list">
           <a href="javascript:" class="info_data_link">
             <span class="info_data_top"> <span>0.00</span>元 </span>
-            <span class="info_data_bottom" @click="dd">我的余额</span>
+            <span class="info_data_bottom">我的余额</span>
           </a>
           <a href="javascript:" class="info_data_link">
             <span class="info_data_top"> <span>0</span>个 </span>
@@ -99,20 +104,26 @@
           </div>
         </a>
       </section>
+      <section class="profile_my_order border-1px">
+        <!--只有用户登录之后才会显示 同时绑定点击事件-->
+        <mt-button
+          type="primary"
+          style="width: 100%"
+          v-if="userInfo._id"
+          @click="logout"
+          plain
+          >退出登录</mt-button
+        >
+      </section>
     </section>
   </div>
 </template>
 
 <script>
+import { MessageBox, Toast } from "mint-ui";
 import HeaderTop from "@/components/HeaderTop/HeaderTop.vue";
 import { mapState } from "vuex";
 export default {
-  data() {
-    return {
-      myinfo: false,
-      myName: "",
-    };
-  },
   // 注册到components
   components: {
     HeaderTop,
@@ -120,15 +131,21 @@ export default {
   computed: {
     ...mapState(["userInfo"]),
   },
-  mounted() {
-    if (this.userInfo.code == 0) {
-      this.myinfo = true;
-      this.myName = this.userInfo;
-    }
-  },
+
   methods: {
-    dd() {
-      console.log(this.userInfo.name);
+    logout() {
+      MessageBox.confirm("确认退出吗?").then(
+        // eslint-disable-next-line no-unused-vars
+        (action) => {
+          // 请求退出
+          this.$store.dispatch("logout");
+          Toast("登出完成");
+        },
+        // eslint-disable-next-line no-unused-vars
+        (action) => {
+          console.log("取消登录");
+        }
+      );
     },
   },
 };
@@ -160,7 +177,7 @@ export default {
 
         .icon-person {
           background: #e4e4e4;
-          font-size: 62px;
+          font-size: 72px;
         }
       }
 

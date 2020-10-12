@@ -1,5 +1,6 @@
 <template>
   <div class="ratings" ref="ratings">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2085780_6zeolxbnm5g.css">
     <div class="ratings-content">
       <div class="overview">
         <div class="overview-left">
@@ -282,6 +283,7 @@ export default {
       padding: 18px 0;
       margin: 0 18px;
       // border-1px(rgba(7, 17, 27, 0.1));
+      
       font-size: 0;
 
       .block {
@@ -295,7 +297,7 @@ export default {
         background: rgba(77, 85, 93, 0.2);
 
         &.active {
-          background: $green;
+          background: $dColor;
           color: #fff;
         }
 
@@ -315,7 +317,7 @@ export default {
 
       &.on {
         .icon-check_circle {
-          color: $green;
+          color: green;
         }
       }
 
