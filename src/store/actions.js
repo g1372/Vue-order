@@ -70,8 +70,8 @@ export default {
     }
   },
   //同步记录用户信息
-  recordUser({commit}, userInfo) {
-    commit(RECEIVE_USER_INFO, {userInfo})
+  recordUser({ commit }, userInfo) {
+    commit(RECEIVE_USER_INFO, { userInfo });
   },
   // 异步获取用户信息
   async getUserInfo({ commit }) {
